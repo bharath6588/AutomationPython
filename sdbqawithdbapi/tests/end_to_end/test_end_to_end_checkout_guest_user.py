@@ -29,20 +29,20 @@ class TestEndToEndCheckoutGuestUser:
         home_p.click_view_cart()
 
         # make sure the cart is updated before going to cart
-        #header.wait_until_cart_item_count(1)
+        header.wait_until_cart_item_count(1)
 
         # go to cart
-        #header.click_on_cart_on_right_header()
+        header.click_on_cart_on_right_header()
 
         product_names = cart_p.get_all_product_names_in_cart()
         assert len(product_names) == 1, f"Expected 1 item in cart but found {len(product_names)}"
 
         # apply free coupon SSQA100
         coupon_code = GenericConfigs.FREE_COUPON
-        #cart_p.apply_coupon(coupon_code)
+        cart_p.apply_coupon(coupon_code)
 
         # select free shipping
-        #cart_p.click_on_local_pickup_radio_btn()
+        cart_p.click_on_local_pickup_radio_btn()
 
         # click on checkout
         cart_p.click_on_proceed_to_checkout()
@@ -51,11 +51,9 @@ class TestEndToEndCheckoutGuestUser:
         checkout_p.fill_in_billing_info()
 
         # click on place order
-        checkout_p.click_place_order()
+        #checkout_p.click_place_order()
 
         # verify order is received
         order_received_p.verify_order_received_page_loaded()
 
         # verify order is recorded in db (via SQL or via api)
-
-        
